@@ -1,9 +1,10 @@
 {
   "name": "ng-sortable",
-  "version": "0.2.0",
-  "homepage": "https://github.com/dominicenglish/ng-sortable",
+  "version": "0.2.1",
+  "homepage": "https://github.com/vitoss/ng-sortable",
   "authors": [
-    "Dominic English <dominic.b.english@gmail.com>"
+    "Dominic English <dominic.b.english@gmail.com>",
+    "Witold Wasilewski <vitotao@gmail.com>",
   ],
   "description": "Angular module to enable drag and drop sorting. Works on touch devices.",
   "keywords": [

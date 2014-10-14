@@ -16,31 +16,22 @@
             scope: {
                 'itemArray': '=ngSortable',
                 'listItemSelector': '@ngSortableItemSelector',
-                'orderChanged': '&ngSortableOnChange'
+                'orderChanged': '&ngSortableOnChange',
+                'handle': '.order'
             },
             link: function(scope, element, attrs) {
                 var container = element,
                     originalContainerContent,
                     sort,
-                    slice = Array.prototype.slice;
+                    slice = Array.prototype.slice,
+                    ghostClass = 'dragging';
 
                 // Create rubaxa sortable list
                 sort = new Sortable(element[0], {
                     draggable: scope.listItemSelector,
-                    onUpdate: onUpdate
+                    onUpdate: onUpdate, 
+                    ghostClass: ghostClass
                 });
-
-                // Events for when a drag begins
-                container
-                    .on('mousedown', onGrab)
-                    .on('touchstart', onGrab)
-                    .on('selectstart', onGrab);
-
-                // When a drag event is begun
-                function onGrab(event) {
-                    // Save the current state of the list
-                    originalContainerContent = container.contents();
-                }
 
                 // When the list order is updated
                 function onUpdate(event) {
@@ -58,12 +49,6 @@
 
                     // Get the new position of the dragged element
                     var newPosition = elementList.indexOf(clickedItem[0]);
-
-                    // Reset position of all dom elements (so ng-repeat's comments
-                    // don't get broken). Note that append works here because the
-                    // appended elements are references and so pull the re-ordered
-                    // elements back into the original order.
-                    container.append(originalContainerContent);
 
                     scope.$apply(function() {
                         // Adjust ng-repeat's array to match the drag changes
