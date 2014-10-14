@@ -16,8 +16,8 @@
             scope: {
                 'itemArray': '=ngSortable',
                 'listItemSelector': '@ngSortableItemSelector',
-                'orderChanged': '&ngSortableOnChange',
-                'handle': '.order'
+                'dragHandleSelector': '@ngDragHandleSelector',
+                'orderChanged': '&ngSortableOnChange'
             },
             link: function(scope, element, attrs) {
                 var container = element,
@@ -30,7 +30,8 @@
                 sort = new Sortable(element[0], {
                     draggable: scope.listItemSelector,
                     onUpdate: onUpdate, 
-                    ghostClass: ghostClass
+                    ghostClass: ghostClass,
+                    handle: scope.dragHandleSelector
                 });
 
                 // When the list order is updated
